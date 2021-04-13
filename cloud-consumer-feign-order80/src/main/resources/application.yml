@@ -1,0 +1,17 @@
+server:
+  port: 80
+eureka:
+  client:
+    #自己不注册，也可以有服务发现功能
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka, http://eureka7002.com:7002/eureka
+
+#openFegin的默认等待时间为 1秒，超时则出错，openFegin底层服务调用是基于ribbon
+#所以设置ribbon、超时控制
+ribbon:
+  # 建立连接后从发送请求到接受回复的最大时间
+  ReadTimeout:  5000
+  # OpenFeign和远程微服务建立http连接的最大耗费时间
+  ConnectTimeout: 5000
+

@@ -1,0 +1,24 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-center
+  cloud:
+    config:
+      server:
+        git:
+          # 配置 Git 仓库地址（GitHub、GitLab、码云 …）
+          uri:  https://github.com/yangyue-king/springcloud-config.git
+          search-paths:
+            # 搜索目录
+            - springcloud-config
+          force-pull: true
+          username: yangyue-king
+          passphrase: yy55558888yy
+      label: master
+      # 分支
+eureka:
+  client:
+    service-url:
+      defaultZone:  http://localhost:7001/eureka
+
