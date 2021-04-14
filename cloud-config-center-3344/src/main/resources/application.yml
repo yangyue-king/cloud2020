@@ -1,5 +1,7 @@
 server:
   port: 3344
+
+
 spring:
   application:
     name: cloud-config-center
@@ -10,15 +12,38 @@ spring:
           # 配置 Git 仓库地址（GitHub、GitLab、码云 …）
           uri:  https://github.com/yangyue-king/springcloud-config.git
           search-paths:
-            # 搜索目录
-            - springcloud-config
+          - springcloud-config
           force-pull: true
           username: yangyue-king
-          passphrase: yy55558888yy
+          password: yy55558888yy
       label: master
       # 分支
+
+
 eureka:
   client:
+    #该微服务注册进eureka服务注册中心
+    register-with-eureka: true
+    #允许该微服务搜索其它注册进eureka的微服务
+    fetch-registry: true
+    #指定eureka注册中心的访问路径
     service-url:
-      defaultZone:  http://localhost:7001/eureka
+      defaultZone: http://eureka7001.com:7001/eureka
 
+
+# rabbitMQ相关配置，15672是web管理的接口，5672是MQ的端口
+# ConfigClient实例在MQ中监听的 默认Topic为 SpringCloudBus
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+
+# rabbitMQ相关配置，暴露 bus-refresh 刷新配置的端点
+# 访问这个 bus-refresh节点 则可以对同一个主题的所有实例 进行广播refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

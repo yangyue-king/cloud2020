@@ -1,0 +1,42 @@
+server:
+  port: 3355
+
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: master   #分支
+      name: config    # application
+      profile: dev    # 环境
+      uri: http://localhost:3344  # 配置中心3344
+
+
+      # http://localhost:3344/master/config-dev.yml
+      # 相当于各个配置客户端去配置中心http://localhost:3344 获取相对应的配置
+      # 配置中心config-server 连着 github获取配置
+
+
+      # 相当于这里面有了 github 上config-dev.yml 的配置信息
+      # 但第一次获取了对应的配置信息后，除非重启重新获取，不然一直用的都是缓存
+      # 当云端修改配置后，需要向本模块端口发送配置更新post，才会被动更新配置
+      # 更新命令在cmd里面输入 curl -X POST "http://localhost:3355/actuator/refresh
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+
+# rabbitMQ相关配置，15672是web管理的接口，5672是MQ的端口
+# ConfigClient实例在MQ中监听的 默认Topic为 SpringCloudBus
+rabbitmq:
+  host: localhost
+  port: 5672
+  username: guest
+  password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
