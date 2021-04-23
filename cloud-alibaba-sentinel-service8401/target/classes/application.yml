@@ -1,0 +1,42 @@
+server:
+  port: 8401
+
+spring:
+  application:
+    name: cloudalibaba-sentinel-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+    # 微服务8401被 sentinel 守护(流控、熔断、降级)
+    sentinel:
+      transport:
+        dashboard: localhost:8080
+        port: 8719
+        #默认8719，假如被占用了会自动从8719开始依次+1扫描。直至找到未被占用的端口
+
+      # 相当于流控规则直接去nacos找了，持久化与nacos，默认来自于sentinel
+      datasource:
+        ds1:
+          nacos:
+            server-addr: localhost:8848
+            dataId: cloudalibaba-sentinel-service
+            groupId: DEFAULT_GROUP
+            data-type: json
+            rule-type: flow
+
+
+feign:
+  sentinel:
+    enabled: true # 激活Sentinel对Feign的支持
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
+
+

@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: test
+    #active: dev
+    #active: info
+
+#config:
+#  info: woshinidie
+# bootstrap的优先级比application要高，都有的配置则 bootstrap中的生效

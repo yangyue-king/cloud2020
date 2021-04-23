@@ -1,0 +1,31 @@
+server:
+  port: 3377
+
+spring:
+  application:
+    name: nacos-config-client
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848 #服务注册中心地址
+      config:
+        server-addr: localhost:8848 #配置中心地址
+        file-extension: yaml #指定yaml格式的配置
+
+
+        #同一个  namespace即开发环境  下可以有多个组，不同group里面配置文件可以一样
+        group: TEST_GROUP
+        namespace: 70b65387-224c-49c4-803d-db7963781f5d
+
+
+# naacos一个namespace下有多个group，group下面有微服务，微服务下面有多个集群
+# 不同namespace，group下面的配置文件可以重名
+
+
+# bootstrap得优先级高于application，配置中心得、全局得放在bootstrap
+# 自己得放在application中
+
+
+# 一个微服务在nacos上只有一个一个配置文件，文件命名规则为
+# ${spring.application。name} - ${spring.profile.active} . ${file.extension}
+# 本微服务对应得配置文件就是 nacos-config-client-dev.yaml

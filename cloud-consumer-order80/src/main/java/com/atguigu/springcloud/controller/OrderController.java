@@ -39,6 +39,7 @@ public class OrderController {
     @Resource
     private DiscoveryClient discoveryClient;
 
+    // 自定义的LB
     @Resource
     private LoadBalance loadBalancer;
 
