@@ -9,13 +9,12 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>seata-order-service2001</artifactId>
+    <artifactId>seata-order-service2002</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
-
 
     <dependencies>
         <!--nacos-->
@@ -27,7 +26,6 @@
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
-            <!--剔除掉的为0.7版本-->
             <exclusions>
                 <exclusion>
                     <artifactId>seata-all</artifactId>
@@ -35,7 +33,6 @@
                 </exclusion>
             </exclusions>
         </dependency>
-        <!--我们用的seata-server是0.9，所以这里要匹配-->
         <dependency>
             <groupId>io.seata</groupId>
             <artifactId>seata-all</artifactId>

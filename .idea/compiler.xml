@@ -32,8 +32,15 @@
         <module name="cloudalibaba-provider-payment9001" />
         <module name="cloud-gateway-gateway9527" />
         <module name="cloudalibaba-consumer-nacos-order83" />
+        <module name="seata-account-service2003" />
         <module name="cloud-consumer-order80" />
         <module name="cloud-config-client-3355" />
+      </profile>
+      <profile name="Annotation profile for cloud2020" enabled="true">
+        <sourceOutputDir name="../seata-order-service2002/target/generated-sources/annotations" />
+        <sourceTestOutputDir name="../seata-order-service2002/target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="seata-storage-service2002" />
       </profile>
     </annotationProcessing>
   </component>
